@@ -13,4 +13,6 @@
 		addi $s1, $s1, 1
 		j FOR
 	DONE:
-    move $v0, $s0
+  	li $v0, 1
+    move $a0, $s0
+    syscall
