@@ -4,14 +4,9 @@ list: .space 1025 # Declarando array de inteiros
 .text
 .globl main
 main:
-lui $s0, 0x23B8 # $s0 = 0x23B80000
-ori $s0, $s0, 0xF000 # $s0 = 0x23B8F000 
 addi $s1, $0, 0 # i = 0
 addi $t2, $0, 1024 # $t2 = 1000
-
 la $s3, list # $s3 = Endereco do array
-
-la $a0, ($s3) # Salva em a0 o $s3
 jal function1
 j DONE
 
