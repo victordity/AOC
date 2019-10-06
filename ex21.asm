@@ -1,28 +1,31 @@
-.data
-	A: .word 2
-    B: .word 6
-	C: .word 4
-
-.text
-lw $s0, A($zero)
-lw $s1, B($zero)
-lw $s2, C($zero)
-
-bne $s0, 2, OR # A == 2?
-bne $s1, 3, OR # B == 3?
-
-DONE:
-# Imprime 1
-li $v0, 1
-li $a0, 1
-syscall
-j EXIT
-
-OR:
-bne $s2, 4, DONE # C != 4?
-
-li $v0, 1
-li $a0, 0
-syscall
-
-EXIT:
+ .text
+ 	addi $t1, $zero, 1
+ 	addi $t2, $zero, 2
+ 	
+	addi $v0, $zero, 5
+	syscall
+	add $a0, $zero, $v0
+	
+	addi $v0, $zero, 5
+	syscall
+	add $a1, $zero, $v0
+	
+	addi $v0, $zero, 5
+	syscall
+	add $a2, $zero, $v0
+	
+	beq $a2, 4, NO
+	bne $a0, 2, NO
+	bne $a1, 3, NO
+	
+	li $v0, 1
+	addi $a0, $t1, 0
+    	syscall
+    	j DONE
+    	
+	NO:
+	li $v0, 1
+	addi $a0, $t2, 0
+    	syscall
+    	
+    	DONE:
